@@ -4,6 +4,7 @@
 
 #include "FileManagement.h"
 #include "KeyEdit.h"
+#include "Functions.h"
 #include <iostream>
 
 using namespace std;
@@ -38,7 +39,18 @@ int main()
 		
 		string str;
 
-		if (select == "3")
+		if (select == "1")
+		{
+			string text;
+			cout << "Text: ";
+			getline(cin, text, '\n');
+
+			State state(text);
+			state.Encrypt();
+			cout << state << endl;
+
+		}
+		else if (select == "3")
 		{
 			string fileName;
 			cout << "File name: ";

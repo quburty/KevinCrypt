@@ -111,17 +111,15 @@ State::State(BYTE * _asciCode, int len)
 	}
 }
 
-char* State::operator= (State state)
+State::State(std::string str)
 {
-	char temp[16];
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 16; i++)
 	{
-		for (int j = 0; j < 4; j++)
-		{
-			temp[i * 4 + j] = state.asciCode[i][j];
-		}
+		if (str.length() > i)
+			asciCode[i / 4][i % 4] = str[i];
+		else
+			asciCode[i / 4][i % 4] = 0x00;
 	}
-	return temp;
 }
 
 State State::operator= (char cArr[16])
@@ -226,8 +224,6 @@ void State::InvMixColumns()
 		asciCode[3][i] = temp[3] % 256;
 	}
 }
-
-//함수에 문제가 있지만, 암호화,복호화 할 때 문제가 없으므로 그대로 사용함. 
 
 void State::AddRoundKey(word w[4])
 {
@@ -379,15 +375,15 @@ bool State::UnRebuild(int & len)
 	return true;
 }
 
-//ostream &operator << (ostream& os, const State& state)
-//{
-//	for (int i = 0; i < 4; i++)
-//	{
-//		for (int j = 0; j < 4; j++)
-//		{
-//			if (state.asciCode[i][j] != 0xcc)
-//				os << state.asciCode[i][j];
-//		}
-//	}
-//	return os;
-//}
+std::ostream& operator << (std::ostream& os, const State& state)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (state.asciCode[i][j] != 0xcc)
+				os << state.asciCode[i][j];
+		}
+	}
+	return os;
+}

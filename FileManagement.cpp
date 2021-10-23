@@ -132,7 +132,6 @@ void FileManagement::FileLen()
 bool FileManagement::EncryptFile(string copyFIleName)
 {
 	//TODO: 이거 시발 옛날 String쓴거 싹다 지우고 전부 State로 바꿔라
-	//시발 이미 만들어둔게 있는데 왜 바로 안씀?ㅋㅋ
 
 	FileLen();
 	if (fileLen<=0)

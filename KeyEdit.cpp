@@ -29,7 +29,7 @@ bool KeyEdit::Edit(std::string key)
 	str = key;
 	for (unsigned int i = 0; i < key.size(); i++)
 		BYTE_Arr[i] = key[i];
-	for (unsigned int i = key.size(); i < 32; i++)
+	for (unsigned int i = static_cast<unsigned int>(key.size()); i < 32; i++)
 		BYTE_Arr[i] = 0x00;
 	Static_Key_Edit_Apply();
 

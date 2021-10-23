@@ -25,7 +25,6 @@ class State
 {
 private:
 	BYTE asciCode[4][4];
-	
 
 public:
 
@@ -38,8 +37,9 @@ public:
 
 	State(BYTE* _asciCode, int len);
 
-	char* operator= (State state);
+	State(std::string str);
 
+public:
 	State operator= (char cArr[16]);
 
 	operator char* () = delete;
@@ -58,7 +58,7 @@ public:
 
 	void InvMixColumns();
 
-	//함수에 문제가 있지만, 암호화,복호화 할 때 문제가 없으므로 그대로 사용함. 
+	//TODO: 함수에 문제가 있지만, 암호화,복호화 할 때 문제가 없으므로 그대로 사용중..
 	void AddRoundKey(word w[4]);
 
 	void AddRoundKey(word w1, word w2, word w3, word w4);
@@ -78,7 +78,8 @@ public:
 	void Rebuild(const int& currentLen);
 	bool UnRebuild(int& len);
 
-	//friend ostream& operator<<(ostream& os, const State& state);
+public:
+	friend std::ostream& operator<<(std::ostream& os, const State& state);
 
 };
 
